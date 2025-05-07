@@ -52,6 +52,8 @@ features = [
 ]
 
 [features]
+
+archlinux = []
 # In release builds, don't compile debug logging code, to improve performance.
 default = ["release_max_level_info", "progress-bar"]
 
@@ -242,6 +244,9 @@ console-subscriber = { workspace = true, optional = true }
 
 [build-dependencies]
 vergen = { workspace = true, features = ["cargo", "git", "git2", "rustc"] }
+
+[target.'cfg(feature = "archlinux")'.build-dependencies]
+clang-sys = { git = "https://github.com/KyleMayes/clang-sys", tag = "v1.9.0" }
 
 # test feature lightwalletd-grpc-tests
 tonic-build = { workspace = true, optional = true }
